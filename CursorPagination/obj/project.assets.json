@@ -3966,19 +3966,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\giuse\\.nuget\\packages\\": {}
+    "C:\\Users\\giu_a\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\giuse\\RiderProjects\\CursorPagination\\CursorPagination\\CursorPagination.csproj",
+      "projectUniqueName": "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination\\CursorPagination\\CursorPagination.csproj",
       "projectName": "CursorPagination",
-      "projectPath": "C:\\Users\\giuse\\RiderProjects\\CursorPagination\\CursorPagination\\CursorPagination.csproj",
-      "packagesPath": "C:\\Users\\giuse\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\giuse\\RiderProjects\\CursorPagination\\CursorPagination\\obj\\",
+      "projectPath": "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination\\CursorPagination\\CursorPagination.csproj",
+      "packagesPath": "C:\\Users\\giu_a\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination\\CursorPagination\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\giuse\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\giu_a\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -4002,7 +4002,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -4082,7 +4082,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
