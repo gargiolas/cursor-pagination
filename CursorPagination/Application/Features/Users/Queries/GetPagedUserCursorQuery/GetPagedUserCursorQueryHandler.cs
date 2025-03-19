@@ -77,7 +77,7 @@ internal sealed class
 
         var hasMore = entries.Count > sizeLimit;
 
-        //Remove last entity used to generate the next page
+        //Remove the last entity used to generate the next page
         entries.RemoveAt(entries.Count - 1);
 
         var paginationResult = new ResultCollection<UserDto>()

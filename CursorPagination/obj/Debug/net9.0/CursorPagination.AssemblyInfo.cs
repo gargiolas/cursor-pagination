@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CursorPagination")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce1cafc6128f280417d11e026c337be16eda28da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8ce4cf5215f55ee6c85974815e7f573a286c7d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("CursorPagination")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CursorPagination")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

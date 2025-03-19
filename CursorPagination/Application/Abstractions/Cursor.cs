@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Authentication;
 namespace CursorPagination.Application.Abstractions;
 
 /// <summary>
-/// Represents a cursor used for pagination operations, including metadata and the current entity reference.
+/// Represents a cursor utilized in pagination for tracking position and metadata associated with a specific entity.
 /// </summary>
-/// <typeparam name="TEntity">The type of the entity attached to the cursor.</typeparam>
-/// <param name="LastId">The unique identifier of the last entity in the current cursor.</param>
-/// <param name="Entity">The entity representation of the current cursor position.</param>
-/// <param name="Position">The numeric index representing the position of the entity within a paginated dataset.</param>
+/// <typeparam name="TEntity">The type of the entity related to the cursor.</typeparam>
+/// <param name="LastId">The unique identifier of the most recent entity within the cursor context.</param>
+/// <param name="Entity">The entity object corresponding to the current position in the paginated set.</param>
+/// <param name="Position">The numerical position of the current entity relative to the dataset.</param>
 public sealed record Cursor<TEntity>(Guid LastId, TEntity Entity, int Position)
 {
     /// <summary>
@@ -34,12 +34,13 @@ public sealed record Cursor<TEntity>(Guid LastId, TEntity Entity, int Position)
         return (encodedCursor, position);
     }
 
+    /// <summary>
     /// Decodes a Base64URL encoded cursor string into a <see cref="Cursor{TEntity}"/> object.
-    /// <param name="encodedCursor">
-    /// The Base64URL encoded cursor string to decode. Can be null or empty.
-    /// </param>
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity represented by the cursor.</typeparam>
+    /// <param name="encodedCursor">The Base64URL encoded cursor string to decode. Can be null or empty.</param>
     /// <returns>
-    /// A <see cref="Cursor{TEntity}"/> object containing the decoded information if the input is valid;
+    /// A <see cref="Cursor{TEntity}"/> object containing the decoded information if valid;
     /// otherwise, null if the input is invalid or cannot be parsed.
     /// </returns>
     private static Cursor<TEntity>? DecodeCursor(string? encodedCursor)
@@ -58,21 +59,20 @@ public sealed record Cursor<TEntity>(Guid LastId, TEntity Entity, int Position)
     }
 
     /// <summary>
-    /// Calculates the next or previous cursor position and retrieves the related entity based on the provided encoded cursor.
+    /// Calculates the index of the cursor based on the provided encoded cursor, page size, and direction (next or previous page).
     /// </summary>
     /// <param name="encodedCursor">
-    /// The encoded cursor that contains information about the last position and entity. Can be null.
+    /// The encoded cursor that represents the current position and entity. Can be null.
     /// </param>
     /// <param name="pageSize">
-    /// The size of the page to be retrieved. Must be greater than zero.
+    /// The size of the page to be retrieved. Must be a positive integer.
     /// </param>
     /// <param name="isNextPage">
-    /// Indicates whether the next page or the previous page is to be retrieved.
-    /// When true, calculates the cursor for the next page; when false, calculates for the previous page.
+    /// A boolean indicating the direction for pagination.
+    /// If true, the index for the next page is calculated; if false, the index for the previous page is calculated.
     /// </param>
     /// <returns>
-    /// A tuple containing the index of the entity and the entity itself.
-    /// If the encoded cursor is null or invalid, returns a default value (0, null).
+    /// The calculated cursor index. If the encoded cursor is null or invalid, returns 0.
     /// </returns>
     public static int CalculateCursorIndex(
         string? encodedCursor,
@@ -90,10 +90,10 @@ public sealed record Cursor<TEntity>(Guid LastId, TEntity Entity, int Position)
     }
 
     /// <summary>
-    /// Decodes a Base64-encoded string into a JSON string representation.
+    /// Decodes a Base64-encoded string into its JSON string representation.
     /// </summary>
-    /// <param name="encodedCursor">The Base64-encoded string to decode.</param>
-    /// <returns>The decoded JSON string representation.</returns>
+    /// <param name="encodedCursor">The Base64-encoded string input to be decoded.</param>
+    /// <returns>The decoded JSON string representation of the input.</returns>
     private static string DecodeBase64ToJson(string encodedCursor)
     {
         byte[] decodedBytes = Base64UrlTextEncoder.Decode(encodedCursor);
