@@ -74,7 +74,7 @@ public sealed record Cursor<TEntity>(Guid LastId, TEntity Entity, int Position)
     /// A tuple containing the index of the entity and the entity itself.
     /// If the encoded cursor is null or invalid, returns a default value (0, null).
     /// </returns>
-    public static (int index, TEntity? entity ) CalculateCursor(
+    public static int CalculateCursorIndex(
         string? encodedCursor,
         int pageSize,
         bool isNextPage)
@@ -82,11 +82,11 @@ public sealed record Cursor<TEntity>(Guid LastId, TEntity Entity, int Position)
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(pageSize);
 
         var decodedCursor = DecodeCursor(encodedCursor);
-        if (decodedCursor is null) return default;
+        if (decodedCursor is null) return 0;
 
         var lastIndex = decodedCursor.Position;
 
-        return (isNextPage ? lastIndex + pageSize : Math.Max(0, lastIndex - pageSize), decodedCursor.Entity);
+        return isNextPage ? lastIndex + pageSize : Math.Max(0, lastIndex - pageSize);
     }
 
     /// <summary>

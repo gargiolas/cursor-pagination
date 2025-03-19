@@ -49,7 +49,7 @@ internal sealed class
         int sizeLimit,
         CancellationToken cancellationToken = default)
     {
-        var cursorCalculated = Cursor<UserDto>.CalculateCursor(request.Cursor, sizeLimit, request.IsNext);
+        var calculateCursorIndex = Cursor<UserDto>.CalculateCursorIndex(request.Cursor, sizeLimit, request.IsNext);
 
         if (string.IsNullOrWhiteSpace(request.Cursor) && !request.IsNext)
             throw new ArgumentException("Filter is required");
@@ -65,7 +65,7 @@ internal sealed class
             [
                 ("Surname", false),
                 ("Name", true)
-            ], startIndex: cursorCalculated.index, recordForPage: sizeLimit);
+            ], startIndex: calculateCursorIndex, recordForPage: sizeLimit);
 
         var entries = await userQuery
             .Select(EntryQueries.ToUserDto())
@@ -73,7 +73,7 @@ internal sealed class
 
         var lastEntry = entries[^1]; //The Last entry is the one we want to return
         var cursor =
-            Cursor<UserDto>.GenerateEncodedCursor(lastEntry.Id, lastEntry, cursorCalculated.index);
+            Cursor<UserDto>.GenerateEncodedCursor(lastEntry.Id, lastEntry, calculateCursorIndex);
 
         var hasMore = entries.Count > sizeLimit;
 
