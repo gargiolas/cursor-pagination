@@ -12,11 +12,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("CursorPagination")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("2.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.1.0+a191907674ac5953ef3d77ee7c7f535da6c1f72f")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.2.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.2.0+070fe1d437d85fb55704da02d33fa31a334b9b48")]
 [assembly: System.Reflection.AssemblyProductAttribute("CursorPagination")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CursorPagination")]
-[assembly: System.Reflection.AssemblyVersionAttribute("2.1.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.2.0.0")]
 
 // Generato dalla classe WriteCodeFragment di MSBuild.
 
