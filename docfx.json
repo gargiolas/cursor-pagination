@@ -4,7 +4,7 @@
     {
       "src": [
         {
-          "src": "../src",
+          "src": "../CursorPagination",
           "files": [
             "**/*.csproj"
           ]
