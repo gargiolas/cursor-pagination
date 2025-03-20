@@ -28,6 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Persistence\DTOs\" />
       <Folder Include="Persistence\Migrations\" />
     </ItemGroup>
 

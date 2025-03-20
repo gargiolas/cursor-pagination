@@ -3969,7 +3969,7 @@
     "C:\\Users\\giu_a\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination\\CursorPagination\\CursorPagination.csproj",
       "projectName": "CursorPagination",
@@ -3993,9 +3993,6 @@
         }
       },
       "warningProperties": {
-        "noWarn": [
-          "NU1605"
-        ],
         "warnAsError": [
           "NU1605"
         ]

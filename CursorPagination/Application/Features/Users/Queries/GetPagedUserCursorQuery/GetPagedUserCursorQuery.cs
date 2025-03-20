@@ -4,4 +4,4 @@ using MediatR;
 
 namespace CursorPagination.Application.Features.Users.Queries.GetPagedUserCursorQuery;
 
-internal sealed record GetPagedUserCursorQuery(string? Cursor, bool IsNext) : IRequest<ResultCollection<UserDto>>;
+internal sealed record GetPagedUserCursorQuery(string? Cursor, bool IsNext, UserFilter UserFilter) : IRequest<ResultCollection<UserDto>>;

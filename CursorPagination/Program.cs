@@ -18,7 +18,6 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -33,9 +32,9 @@ app.MapGet("", () => "API Started")
     .WithName("");
 
 app.MapGet("/data",
-        async ([FromQuery] string? cursor, [FromQuery]bool? isNext, ISender sender) =>
+        async ([FromQuery] string? cursor, [FromQuery] bool? isNext, UserFilter userFilter, ISender sender) =>
         {
-            var result = await sender.Send(new GetPagedUserCursorQuery(cursor, isNext ?? true));
+            var result = await sender.Send(new GetPagedUserCursorQuery(cursor, isNext ?? true, userFilter));
             return result.Items.Count == 0 ? Results.NotFound() : Results.Ok(result);
         })
     .WithName("GetCursor");
