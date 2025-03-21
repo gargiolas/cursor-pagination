@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.2.4"></a>
+## [2.2.4](https://www.github.com/gargiolas/cursor-pagination/releases/tag/v2.2.4) (2025-03-21)
+
 <a name="2.2.3"></a>
 ## [2.2.3](https://www.github.com/gargiolas/cursor-pagination/releases/tag/v2.2.3) (2025-03-20)
 
