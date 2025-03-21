@@ -1,4 +1,5 @@
 ﻿using CursorPagination.Domain.Users;
+using CursorPagination.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,11 +13,11 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.ToTable("users");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
-        
+
         builder.Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(100);
-        
+
         builder.Property(x => x.Surname)
             .IsRequired()
             .HasMaxLength(200);
@@ -28,5 +29,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.Address)
             .IsRequired(false)
             .HasMaxLength(300);
+
+        //builder.SetAsShadowProperty("RowIndex");
     }
 }

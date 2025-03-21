@@ -2,6 +2,7 @@
 using System.Text.Json;
 using CursorPagination.Application.Abstractions;
 using CursorPagination.Application.Abstractions.Services;
+using CursorPagination.Domain.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 
 namespace CursorPagination.Infrastructure.Services;
@@ -47,14 +48,18 @@ internal sealed class CursorService : ICursorService
         var decodedCursor = DecodeCursor<TEntity>(encodedCursor);
         if (decodedCursor is null) return 0;
 
-        var isMatch =
-            EqualityComparer<TEntity>.Default.Equals(decodedCursor.Entity, entity);
+        var comparer = new EntityFilterEqualityComparer<TEntity>();
+        var isMatch = comparer.Equals(decodedCursor.Entity, entity);
 
         if (!isMatch) return 0;
 
         var lastIndex = decodedCursor.Position;
 
-        return isNextPage ? lastIndex + pageSize : Math.Max(0, lastIndex - pageSize);
+        return (isNextPage, lastIndex) switch
+        {
+            (true, _) => lastIndex + pageSize,
+            (false, _) => (lastIndex != pageSize) ? lastIndex - pageSize : 0
+        };
     }
 
     /// <summary>

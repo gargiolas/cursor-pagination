@@ -1,11 +1,9 @@
 ﻿using CursorPagination.Application.Abstractions;
 using CursorPagination.Application.Abstractions.Services;
 using CursorPagination.Application.DTOs;
-using CursorPagination.Domain.Users;
 using CursorPagination.Persistence;
 using CursorPagination.Persistence.Extensions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace CursorPagination.Application.Features.Users.Queries.GetPagedUserCursorQuery;
 
@@ -56,35 +54,35 @@ internal sealed class
         if (string.IsNullOrWhiteSpace(request.Cursor) && !request.IsNext)
             throw new ArgumentException("Filter is required");
 
-        var userQuery = applicationContext.ToRanked<User>("cursor_pagination.users",
-            [
-                "Id",
-                "Surname",
-                "Name",
-                "Email",
-                "Address"
-            ],
-            [
-                ("Surname", false),
-                ("Name", true)
-            ], startIndex: calculateCursorIndex, recordForPage: sizeLimit);
-
-        var entries = await userQuery
-            .Select(EntryQueries.ToUserDto())
-            .ToListAsync(cancellationToken: cancellationToken);
+        var entries =
+            await applicationContext.ToDtoRankedListAsync<UserResponse>(
+                "cursor_pagination.users",
+                [
+                    ("Surname", false), 
+                    ("Name", true)
+                ],
+                startIndex: calculateCursorIndex, recordForPage: sizeLimit, cancellationToken);
 
         var lastEntry = entries[^1]; //The Last entry is the one we want to return
         var cursor =
-            cursorService.GenerateEncodedCursor(lastEntry.Id, request.UserFilter, calculateCursorIndex);
+            cursorService.GenerateEncodedCursor(lastEntry.Id, request.UserFilter, (int)lastEntry.RowIndex);
 
+        entries.RemoveAt(entries.Count - 1);
+        
         var hasMore = entries.Count > sizeLimit;
 
         //Remove the last entity used to generate the next page
         entries.RemoveAt(entries.Count - 1);
 
-        var paginationResult = new ResultCollection<UserDto>()
+        var paginationResult = new ResultCollection<UserDto>
         {
-            Items = entries,
+            Items = entries.Select(entry => new UserDto
+            {
+                Id = entry.Id,
+                Name = entry.Name,
+                Surname = entry.Surname,
+                Email = entry.Email
+            }).ToList(),
             Cursor = cursor.EncodedCursor,
             HasPrevious = cursor.EntityIndex - sizeLimit > 0,
             HasMore = hasMore

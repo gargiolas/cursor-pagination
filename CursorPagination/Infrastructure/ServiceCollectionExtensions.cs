@@ -38,8 +38,11 @@ internal static class ServiceCollectionExtensions
     private static void InitializePersistence(IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ApplicationContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
-        );
+        {
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            options.EnableSensitiveDataLogging(true);
+            options.LogTo(Console.WriteLine);
+        });
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -32,9 +32,9 @@ app.MapGet("", () => "API Started")
     .WithName("");
 
 app.MapGet("/data",
-        async ([FromQuery] string? cursor, [FromQuery] bool? isNext, UserFilter userFilter, ISender sender) =>
+        async ([FromQuery] string? cursor, [FromQuery] bool? isNext, ISender sender) =>
         {
-            var result = await sender.Send(new GetPagedUserCursorQuery(cursor, isNext ?? true, userFilter));
+            var result = await sender.Send(new GetPagedUserCursorQuery(cursor, isNext ?? true, new UserFilter()));
             return result.Items.Count == 0 ? Results.NotFound() : Results.Ok(result);
         })
     .WithName("GetCursor");

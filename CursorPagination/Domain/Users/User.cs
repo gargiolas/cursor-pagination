@@ -1,6 +1,6 @@
 ﻿namespace CursorPagination.Domain.Users;
 
-internal sealed class User
+internal class User
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

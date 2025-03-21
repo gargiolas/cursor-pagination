@@ -1,7 +1,7 @@
 ﻿namespace CursorPagination.Application.Abstractions;
 
-public sealed class RankedEntity<TEntity>
+public sealed class RankedEntity<TEntity> where TEntity : class
 {
-    public int Rank { get; set; }
+    public long Rank { get; set; }
     public TEntity Entity { get; set; }
 }
