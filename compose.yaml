@@ -10,7 +10,7 @@
       - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
     build:
       context: .
-      dockerfile: CursorPagination/Dockerfile
+      dockerfile: src/CursorPagination/Dockerfile
     ports:
        - "5000:8080"
        - "5001:443"

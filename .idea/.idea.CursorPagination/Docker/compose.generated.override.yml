@@ -3,7 +3,7 @@ services:
   cursor-pagination:
     build:
       context: "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination"
-      dockerfile: "CursorPagination/Dockerfile"
+      dockerfile: "src/CursorPagination/Dockerfile"
       target: "base"
       args:
         BUILD_CONFIGURATION: "Debug"
@@ -23,16 +23,16 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     image: "cursor-pagination:dev"
     ports:
-    - "127.0.0.1:57020:57000"
-    - "127.0.0.1:57220:57200"
-    - "127.0.0.1:57420:57400"
+    - "127.0.0.1:57023:57000"
+    - "127.0.0.1:57223:57200"
+    - "127.0.0.1:57423:57400"
     volumes:
-    - "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination\\CursorPagination:/app:rw"
+    - "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination\\src\\CursorPagination:/app:rw"
     - "C:\\Users\\giu_a\\RiderProjects\\cursor-pagination:/src:rw"
     - "C:\\Users\\giu_a\\.nuget\\packages:/home/app/.nuget/packages"
     - "C:\\Users\\giu_a\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2024.3.6\\\
       Linux64:/opt/JetBrains/RiderDebuggerTools"
     - "C:\\Users\\giu_a\\AppData\\Local\\Programs\\Rider\\bin\\backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     - "C:\\Users\\giu_a\\AppData\\Local\\JetBrains\\Rider2024.3\\log\\DebuggerWorker\\\
-      JetBrains.Debugger.Worker.2025_3_21_19_40_43:/var/opt/JetBrains/RiderDebuggerTools:rw"
+      JetBrains.Debugger.Worker.2025_3_21_20_55_28:/var/opt/JetBrains/RiderDebuggerTools:rw"
     working_dir: "/app"
