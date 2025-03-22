@@ -4,7 +4,7 @@
     {
       "src": [
         {
-          "src": "src/**/*.cs",
+          "src": "src/CursorPagination/**/*.cs",
           "files": [
             "**/*.cs"
           ],
