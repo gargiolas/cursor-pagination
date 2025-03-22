@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "CursorPagination/2.2.5": {
+      "CursorPagination/2.2.7": {
         "dependencies": {
           "Bogus": "35.6.2",
           "EFCore.BulkExtensions.PostgreSql": "9.0.1",
@@ -883,7 +883,7 @@
     }
   },
   "libraries": {
-    "CursorPagination/2.2.5": {
+    "CursorPagination/2.2.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
